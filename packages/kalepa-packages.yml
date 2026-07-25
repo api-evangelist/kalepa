@@ -1,0 +1,85 @@
+generated: '2026-07-25'
+method: searched
+source: https://github.com/Kalepa
+note: >-
+  Kalepa publishes real, first-party open-source packages, but NONE of them is a
+  client library for the Kalepa Copilot API. Every published package is
+  infrastructure tooling extracted from Kalepa's own AWS/Python platform: an AWS
+  Lambda observability wrapper on PyPI, a marshmallow schema extension on PyPI,
+  and 24 Terraform modules in the public HashiCorp registry under the Kalepa
+  namespace. Because the Copilot API itself is partner-gated and undocumented,
+  no SDK exists for it in any registry and no `SDKs` pointer is wired in apis.yml
+  — recording the absence is the accurate outcome.
+registries_probed:
+- registry: pypi
+  result: 2 first-party packages
+- registry: terraform-registry
+  url: https://registry.terraform.io/namespaces/Kalepa
+  result: 24 first-party modules
+- registry: npm
+  query: kalepa
+  result: no first-party packages
+- registry: rubygems
+  result: not probed — Python/Terraform shop, no Ruby surface published
+packages:
+- language: python
+  registry: pypi
+  name: safe-init
+  version: 1.4.0
+  url: https://pypi.org/project/safe-init/
+  install: pip install safe-init
+  repository: https://github.com/Kalepa/safe-init
+  documentation: https://safe-init.readthedocs.io/en/latest/
+  description: >-
+    Python library that enhances AWS Lambda functions with advanced error
+    handling, monitoring and Sentry/Datadog integration. Announced publicly by
+    Kalepa at https://kalepa.com/news-posts/anouncing-safe-init-open-source-aws-lambda-error-handling-and-monitoring
+  official: true
+  api_client: false
+- language: python
+  registry: pypi
+  name: marshmallow-fastoneofschema
+  version: 2025.9.2.1.dev7
+  url: https://pypi.org/project/marshmallow-fastoneofschema/
+  install: pip install marshmallow-fastoneofschema
+  repository: https://github.com/Kalepa/marshmallow-fastoneofschema
+  description: Marshmallow extension for fast schema (de)multiplexing.
+  official: true
+  api_client: false
+- language: python
+  registry: github
+  name: kalepa-signxml
+  url: https://github.com/Kalepa/kalepa-signxml
+  repository: https://github.com/Kalepa/kalepa-signxml
+  description: >-
+    Kalepa fork of the signxml Python XML Signature / XAdES library. Published on
+    GitHub only — no PyPI distribution under this name (pypi.org/pypi/kalepa-signxml
+    returns 404).
+  official: true
+  api_client: false
+terraform_modules:
+  namespace: Kalepa
+  url: https://registry.terraform.io/namespaces/Kalepa
+  count: 24
+  official: true
+  top_by_downloads:
+  - {id: Kalepa/shell-resource/external, version: 0.5.2, downloads: 127777}
+  - {id: Kalepa/assertion/null, version: 0.2.1, downloads: 15721}
+  - {id: Kalepa/secure-s3-bucket/aws, version: 0.3.3, downloads: 12505}
+  - {id: Kalepa/shell-data/external, version: 0.4.0, downloads: 12103}
+  - {id: Kalepa/log-group/aws, version: 0.4.0, downloads: 11707}
+  - {id: Kalepa/ecr-repository/aws, version: 0.1.3, downloads: 11515}
+  - {id: Kalepa/deepmerge/null, version: 0.1.6, downloads: 11370}
+  - {id: Kalepa/lambda-set/aws, version: 0.6.0, downloads: 10259}
+  - {id: Kalepa/lambda-shell/aws, version: 0.4.0, downloads: 10175}
+  - {id: Kalepa/lambda-shell-resource/aws, version: 0.3.1, downloads: 10144}
+  - {id: Kalepa/secret-replicas/aws, version: 0.1.1, downloads: 10022}
+  - {id: Kalepa/validated-acm-certificate/aws, version: 0.1.3, downloads: 9980}
+  - {id: Kalepa/lambda-shell-data/aws, version: 0.2.2, downloads: 9932}
+  - {id: Kalepa/database-executor/aws, version: 0.2.1, downloads: 9921}
+sdks:
+  count: 0
+  note: >-
+    No client SDK for the Kalepa Copilot API exists in any public registry. The
+    API is behind a customer login negotiated commercially; integration code is
+    delivered inside the engagement, not published.

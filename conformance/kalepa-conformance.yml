@@ -1,0 +1,91 @@
+generated: '2026-07-25'
+method: searched
+source: https://kalepa.com/solutions/for-it-ai-leaders
+note: >-
+  Kalepa publishes exactly one named certification — SOC 2 Type II — on the
+  For IT/AI Leaders solutions page. No trust center, no compliance portal, no
+  audit-report request flow and no other certification (ISO 27001, PCI DSS,
+  HIPAA, FedRAMP, CSA STAR) is claimed anywhere on the public site. Because there
+  is no public machine-readable contract, every API-level standard below is
+  asserted false on probed evidence rather than derived from a spec.
+compliance:
+  certifications:
+  - id: soc2-type-ii
+    name: SOC 2 Type II
+    published: true
+    url: https://kalepa.com/solutions/for-it-ai-leaders
+    evidence: >-
+      Verbatim: "Our platform is SOC 2 Type II compliant and provides the
+      explainability required to satisfy both internal risk teams and external
+      regulators."
+    report_available: unknown
+  privacy_regimes:
+  - id: gdpr
+    named: true
+    url: https://kalepa.com/privacy-policy
+    evidence: >-
+      Privacy policy section 5, "Legal bases for processing (EEA, UK, and
+      Switzerland)", names GDPR, UK GDPR and Swiss data protection law.
+  - id: uk-gdpr
+    named: true
+    url: https://kalepa.com/privacy-policy
+  - id: swiss-fadp
+    named: true
+    url: https://kalepa.com/privacy-policy
+  not_claimed:
+  - ISO 27001
+  - ISO 27017
+  - ISO 27018
+  - PCI DSS
+  - HIPAA
+  - FedRAMP
+  - CSA STAR
+  - FIPS 140
+standards:
+- id: soc2-type-ii
+  conforms: true
+  evidence: Published claim on https://kalepa.com/solutions/for-it-ai-leaders
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document at any probed path on api.kalepa.com,
+    kalepa.com or in github.com/Kalepa. See review.yml probes.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    /.well-known/oauth-authorization-server and /.well-known/oauth-protected-resource
+    both 404 on api.kalepa.com; no OAuth flow documented publicly.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration 404 on both hosts.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    Responsible-disclosure program exists at https://kalepa.com/security but is
+    not published as a /.well-known/security.txt.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Anonymous call to https://api.kalepa.com/auth/login returns
+    {"message":"Internal Server Error"} as application/json — a bare message
+    envelope, not application/problem+json.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface is documented.
+- id: acord
+  conforms: false
+  evidence: >-
+    ACORD appears on kalepa.com only as a document TYPE the AI extracts from
+    ("from standard ACORD forms to messy spreadsheets"), never as an implemented
+    data standard. No ACORD XML, AL3, NGDS, IVANS download, Applied Epic or
+    Vertafore integration is documented. See review.yml acordPosture.
+- id: dnssec
+  conforms: true
+  evidence: >-
+    kalepa.com, kalepa.co and kalepainsurance.com are DNSSEC-signed. See
+    security/kalepa-domain-security.yml.
+- id: hsts-preload
+  conforms: true
+  evidence: >-
+    api.kalepa.com returns strict-transport-security max-age=63072000;
+    includeSubDomains; preload.

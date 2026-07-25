@@ -18,7 +18,13 @@ description: >-
   a "Kalepa API" component is monitored on the company status page, but every
   documentation path on it returns 404 and the application at copilot.kalepa.com
   redirects to api.kalepa.com/auth/login, so the only integration surface is behind
-  a customer login negotiated in a commercial deal. ACORD appears only as an ingested
+  a customer login negotiated in a commercial deal. The only technical posture Kalepa
+  publishes sits on its For IT/AI Leaders page — an "API-first platform" claim, a 4-6
+  week production deployment, and SOC 2 Type II, the single certification named
+  anywhere on the site. Its open source is real but unrelated to the product API: two
+  PyPI packages (safe-init, marshmallow-fastoneofschema) and 24 Terraform modules in
+  the public HashiCorp registry, all infrastructure tooling rather than client SDKs.
+  ACORD appears only as an ingested
   document format, not as an implemented data standard — no ACORD XML, AL3, NGDS,
   IVANS download, Applied Epic or Vertafore integration is documented anywhere on
   the public site. Kalepa is a clean example of the US insurance seam: no federal
@@ -49,10 +55,32 @@ common:
   url: https://kalepa.com/newsroom
 - type: About
   url: https://kalepa.com/company
+- type: CaseStudies
+  url: https://kalepa.com/case-studies
+- type: Events
+  url: https://kalepa.com/events
+- type: Careers
+  url: https://kalepa.com/careers
+- type: Sitemap
+  url: https://kalepa.com/sitemap.xml
 - type: StatusPage
   url: https://status.kalepa.com/
-- type: VulnerabilityDisclosure
+- type: Lifecycle
+  url: lifecycle/kalepa-lifecycle.yml
+- type: Security
   url: https://kalepa.com/security
+- type: VulnerabilityDisclosure
+  url: security/kalepa-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/kalepa-domain-security.yml
+- type: Compliance
+  url: https://kalepa.com/solutions/for-it-ai-leaders
+- type: Conformance
+  url: conformance/kalepa-conformance.yml
+- type: Packages
+  url: packages/kalepa-packages.yml
+- type: LLMsTxt
+  url: llms/kalepa-llms.txt
 - type: PrivacyPolicy
   url: https://kalepa.com/privacy-policy
 - type: SignUp

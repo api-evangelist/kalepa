@@ -58,6 +58,18 @@ Copilot has Rating and Quote & Bind modules inside the product, but none of the 
 - [GitHub Organization](https://github.com/Kalepa) — 29 public repos, all Terraform/infrastructure OSS, no API artifacts
 - [LinkedIn](https://www.linkedin.com/company/kalepa)
 
+## Artifacts
+
+Enrichment round 2026-07-25 — everything below is searched or probed from Kalepa's own public surface. No spec-derived artifacts exist because there is no spec.
+
+- [conformance/kalepa-conformance.yml](conformance/kalepa-conformance.yml) — **SOC 2 Type II** is published (on the For IT/AI Leaders page, not the security page), GDPR/UK GDPR/Swiss legal bases in the privacy policy, and per-standard conformance with evidence. No ISO 27001, PCI DSS, HIPAA or FedRAMP claim exists.
+- [lifecycle/kalepa-lifecycle.yml](lifecycle/kalepa-lifecycle.yml) — Better Stack status page, both components at 99.993% uptime, a weekly Sunday 6-hour maintenance window ("usually does not last longer than 1 hour"), and eight dated incidents with root-cause notes. No versioning policy, no deprecation policy, no SLA.
+- [packages/kalepa-packages.yml](packages/kalepa-packages.yml) — real first-party open source that is **not** an SDK: `safe-init` and `marshmallow-fastoneofschema` on PyPI, `kalepa-signxml` on GitHub, and 24 Terraform modules under the [Kalepa registry namespace](https://registry.terraform.io/namespaces/Kalepa) led by `shell-resource/external` at ~128k downloads.
+- [security/kalepa-domain-security.yml](security/kalepa-domain-security.yml) — TLS 1.3 and HSTS on all five hosts (`api.kalepa.com` is includeSubDomains + preload), DNSSEC on three of four domains, no CAA anywhere, and no SPF/DMARC on `kalepainsurance.com` or `kalepa.io` even though both are in disclosure scope.
+- [security/kalepa-vulnerability-disclosure.yml](security/kalepa-vulnerability-disclosure.yml) — the responsible-disclosure program structured: `security@kalepa.com`, four in-scope domains, six eligible and six ineligible bug classes, safe-harbour language, no paid bounty, no security.txt.
+- [well-known/kalepa-well-known.yml](well-known/kalepa-well-known.yml) — every `/.well-known/` probe on both hosts, all **404**. Recorded as evidence of absence; no `WellKnown` pointer is wired because there is no discovery surface.
+- [llms/kalepa-llms.txt](llms/kalepa-llms.txt) — generated (Kalepa publishes no `llms.txt`), telling an agent what exists, what does not, and not to attempt calls against `api.kalepa.com`.
+
 ## Review
 
 See [review.yml](review.yml) for the full API Evangelist reviewer finding, including every probed URL with its HTTP status.

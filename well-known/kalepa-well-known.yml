@@ -1,0 +1,35 @@
+generated: '2026-07-25'
+method: searched
+source: live probes 2026-07-25
+present: false
+note: >-
+  Neither the marketing host (kalepa.com) nor the production API host
+  (api.kalepa.com) serves any /.well-known/ discovery document. api.kalepa.com
+  sits behind a CloudFront function that returns a bodyless 404 for every
+  unmatched path, so the absence is uniform rather than selective. No
+  security.txt, no OIDC discovery, no OAuth authorization-server or
+  protected-resource metadata, no api-catalog, no ai-plugin manifest. Recorded as
+  evidence of absence; no WellKnown pointer is wired in apis.yml because there is
+  no discovery surface to point at.
+hosts:
+- host: https://kalepa.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://api.kalepa.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+security_txt:
+  published: false
+  note: >-
+    Kalepa runs a real responsible-disclosure program at https://kalepa.com/security
+    with a security@kalepa.com contact, but does not expose it as an RFC 9116
+    security.txt at either host.

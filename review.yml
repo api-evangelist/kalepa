@@ -127,8 +127,47 @@ findings:
   - url: https://kalepa.com/security
     status: 200
     note: Vulnerability disclosure program page. Lists "Authentication bypass" as an
-      eligible bug class. No SOC 2, SSO, SAML, MFA, encryption or API access-control
-      detail is published.
+      eligible bug class. No SSO, SAML, MFA, encryption or API access-control detail
+      is published on this page. CORRECTION (enrichment round 2026-07-25) - SOC 2
+      Type II IS published, but on /solutions/for-it-ai-leaders rather than here.
+  - url: https://kalepa.com/solutions/for-it-ai-leaders
+    status: 200
+    note: 'Enrichment round 2026-07-25. The only page carrying technical and
+      compliance posture. Verbatim: "Our API-first platform integrates seamlessly
+      into demanding insurance environments", "integrates with policy admin
+      systems, document management platforms, and internal data lakes without
+      requiring replacements", and — the single named certification Kalepa
+      publishes anywhere — "Our platform is SOC 2 Type II compliant and provides
+      the explainability required to satisfy both internal risk teams and external
+      regulators." Claims production deployment in 4-6 weeks. Still no endpoint,
+      base URL, auth scheme or schema.'
+  - url: https://registry.terraform.io/namespaces/Kalepa
+    status: 200
+    note: Enrichment round 2026-07-25. 24 first-party Terraform modules, led by
+      Kalepa/shell-resource/external at 127,777 downloads. Infrastructure tooling,
+      not API clients.
+  - url: https://pypi.org/project/safe-init/
+    status: 200
+    note: Enrichment round 2026-07-25. First-party PyPI package (1.4.0) with docs at
+      safe-init.readthedocs.io. marshmallow-fastoneofschema is also on PyPI;
+      kalepa-signxml is GitHub-only (PyPI 404). None is a Copilot API client.
+  - url: https://status.kalepa.com/feed.rss
+    status: 200
+    note: Enrichment round 2026-07-25. Public incident RSS with written root-cause
+      notes, plus a recurring "Weekly Maintenance Window (6 hours). Usually does not
+      last longer than 1 hour." Both status components show 99.993% uptime.
+  - url: https://kalepa.com/llms.txt
+    status: 404
+    note: Enrichment round 2026-07-25. No provider-published llms.txt; API Evangelist
+      generated one at llms/kalepa-llms.txt.
+  - url: https://api.kalepa.com/graphql
+    status: 404
+    note: Enrichment round 2026-07-25. Also 404 - /health, /healthz, /v1, /api/v1,
+      /api/docs, /api/openapi.json, /openapi, /schema, /llms.txt, and
+      /.well-known/{security.txt,api-catalog,ai-plugin.json,oauth-protected-resource}.
+      api.kalepa.com is fronted by a CloudFront function returning a bodyless 404
+      (x-cache FunctionGeneratedResponse) for every unmatched path, so the absence is
+      uniform, not selective.
   - url: https://kalepa.com/blog
     status: 200
   - url: https://kalepa.com/blog/feed.xml
@@ -245,6 +284,12 @@ sources:
 - url: https://kalepa.com/security
   type: VulnerabilityDisclosure
   note: Vulnerability disclosure program only; no security architecture published.
+    Scope is kalepa.com, kalepainsurance.com, kalepa.co and kalepa.io "and any
+    subdomain"; contact security@kalepa.com; no paid bounty and no security.txt.
+- url: https://kalepa.com/solutions/for-it-ai-leaders
+  type: Compliance
+  note: Publishes the SOC 2 Type II claim and the "API-first platform" positioning.
+    The only compliance certification named anywhere on the public site.
 - url: https://github.com/Kalepa
   type: GitHubOrganization
   note: 29 public repos, all Terraform/infrastructure OSS; no API artifacts.

@@ -1,0 +1,91 @@
+generated: '2026-07-25'
+method: probed
+source: >-
+  live DNS/TLS/HTTP probes of the apis.yml hosts plus the production API host,
+  the Copilot application host, the status host, and the three additional
+  domains named in the responsible-disclosure scope
+hosts:
+- host: kalepa.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 25 15:49:03 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: www.kalepa.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 26 00:29:07 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.kalepa.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 15 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 63072000
+  hsts_include_subdomains: true
+  hsts_preload: true
+  server: CloudFront
+  security_headers:
+    x-frame-options: DENY
+    x-content-type-options: nosniff
+    x-xss-protection: 1; mode=block
+    referrer-policy: strict-origin-when-cross-origin
+  note: >-
+    Production API host. A CloudFront function returns a bodyless 404
+    (x-cache: FunctionGeneratedResponse) for every unmatched path, which is why
+    every documentation and discovery probe uniformly 404s.
+- host: copilot.kalepa.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 13 20:47:19 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+  server: Vercel
+  note: >-
+    Copilot application front end. 307-redirects to
+    https://api.kalepa.com/auth/login?frontend_redirect_url=... — the customer
+    login wall.
+- host: status.kalepa.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 11 06:06:13 2026 GMT
+  hsts: true
+  hsts_max_age: 63113904
+  note: Better Stack hosted status page.
+domains:
+- domain: kalepa.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: kalepa.co
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+  note: In responsible-disclosure scope.
+- domain: kalepainsurance.com
+  dnssec: true
+  caa: []
+  spf: false
+  dmarc: false
+  note: In responsible-disclosure scope. No SPF and no DMARC record.
+- domain: kalepa.io
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false
+  note: >-
+    In responsible-disclosure scope. Weakest posture of the four: unsigned, no
+    CAA, no SPF, no DMARC.
+summary:
+  tls: All five hosts negotiate TLSv1.3.
+  hsts: All five hosts set HSTS; api.kalepa.com is includeSubDomains + preload.
+  caa: No CAA records on any of the four registrable domains.
+  dnssec: Signed on kalepa.com, kalepa.co and kalepainsurance.com; unsigned on kalepa.io.
+  email_auth: >-
+    SPF + DMARC (quarantine) on kalepa.com and kalepa.co; neither on
+    kalepainsurance.com or kalepa.io, both of which are in disclosure scope.

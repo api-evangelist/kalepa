@@ -1,0 +1,108 @@
+generated: '2026-07-25'
+method: searched
+source: https://status.kalepa.com/
+note: >-
+  Kalepa publishes no versioning policy, no deprecation policy and no SLA — there
+  is no public API contract to version. What it does publish is a real, dated
+  operational surface: a Better Stack status page that monitors the Kalepa API as
+  a first-class component, a public incident RSS feed with written root-cause
+  notes, and a recurring weekly maintenance window. That is the only public
+  lifecycle signal Kalepa exposes.
+versioning:
+  scheme: undocumented
+  current: null
+  docs: null
+  note: >-
+    No version path, header or date-train is documented. api.kalepa.com/v1 and
+    /api/v1 both 404.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  documented: false
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation header contract, and no
+    published API changelog. The only breaking-change evidence is an incident
+    report: "A backwards incompatible code change was erroneously deployed
+    without the correct database configuration" (2026-03-10, 18 minutes down).
+sla:
+  url: null
+  uptime_target: null
+  published_uptime:
+    Kalepa Web App: 99.993%
+    Kalepa API: 99.993%
+  window: rolling 180 days as displayed on the status page 2026-07-25
+  note: No contractual SLA is published; the percentages above are observed uptime.
+status_page: https://status.kalepa.com/
+status_page_provider: Better Stack
+status_feed: https://status.kalepa.com/feed.rss
+components:
+- name: Kalepa Web App
+  status: Operational
+  uptime: 99.993%
+- name: Kalepa API
+  status: Operational
+  uptime: 99.993%
+  note: >-
+    Confirms an operationally-monitored production API exists even though no
+    reference documentation is published for it.
+maintenance:
+  cadence: weekly
+  day: Sunday
+  window: 6 hours
+  typical_duration: <= 1 hour
+  evidence: >-
+    Status page maintenance entries, verbatim: "Weekly Maintenance Window
+    (6 hours). Usually does not last longer than 1 hour."
+  examples:
+  - {date: '2026-03-29', url: 'https://status.kalepa.com/incident/851388'}
+  - {date: '2026-03-22', url: 'https://status.kalepa.com/incident/851384'}
+incidents:
+- date: '2026-04-23'
+  title: Service Degradation
+  url: https://status.kalepa.com/incident/878353
+  duration: 1 hour 32 minutes
+  impact: degraded
+  summary: >-
+    A downstream resource had performance issues that degraded latency across
+    dependent services; cache re-population delayed recovery. Resources
+    over-provisioned afterwards.
+- date: '2026-03-10'
+  title: Erroneous Deployment
+  url: https://status.kalepa.com/incident/846301
+  duration: 18 minutes
+  impact: down
+  summary: >-
+    A backwards-incompatible code change was deployed without the correct
+    database configuration, hitting a CI/CD edge case that bypassed normal
+    deployment process.
+- date: '2025-11-06'
+  title: User Cache Misconfiguration
+  url: https://status.kalepa.com/incident/759852
+  impact: down
+- date: '2025-11-03'
+  title: Kalepa Network Misconfiguration
+  url: https://status.kalepa.com/incident/757921
+  duration: 9 minutes
+  impact: down
+  summary: Load balancers were reconfigured to point to valid backend services.
+- date: '2025-10-20'
+  title: Global AWS networking issue
+  url: https://status.kalepa.com/incident/747653
+  impact: degraded
+  summary: >-
+    Third-party AWS regional disruption impacted components supporting Kalepa's
+    production stack; Submission Intake degraded.
+- date: '2025-10-20'
+  title: Global AWS DNS issue
+  url: https://status.kalepa.com/incident/747133
+  impact: down
+  summary: Third-party AWS regional disruption; no US customers affected.
+- date: '2025-08-20'
+  title: Backend degraded performance
+  url: https://status.kalepa.com/incident/709345
+  impact: degraded
+- date: '2024-01-17'
+  title: Hosting platform down
+  url: https://status.kalepa.com/incident/314127
+  impact: down
+deprecated_operations: []
