@@ -1,0 +1,66 @@
+aid: kalepa
+url: https://raw.githubusercontent.com/api-evangelist/kalepa/refs/heads/main/apis.yml
+name: Kalepa
+kind: company
+description: >-
+  Kalepa is a New York–headquartered insurtech founded in 2018 by Paul
+  Monasterio and Daniel Hillman that builds Copilot, an AI underwriting workbench
+  sold to commercial property and casualty carriers, MGAs, mutuals and brokers in
+  its home market of the United States. Copilot covers the commercial underwriting
+  workflow end to end — submission ingestion out of broker email and document
+  packages (ACORD forms, statements of value, loss runs, supplemental applications),
+  clearance and sanctions screening, triage by bindability and profitability, risk
+  analysis, rating, quote and bind document generation, and portfolio management.
+  Its API posture is partner-gated and there is no public API. Kalepa publishes no
+  developer portal — developer.kalepa.com, developers.kalepa.com and docs.kalepa.com
+  do not resolve, and /developers, /api, /developer, /partners and /integrations on
+  kalepa.com all return 404. A production API host does exist at api.kalepa.com and
+  a "Kalepa API" component is monitored on the company status page, but every
+  documentation path on it returns 404 and the application at copilot.kalepa.com
+  redirects to api.kalepa.com/auth/login, so the only integration surface is behind
+  a customer login negotiated in a commercial deal. ACORD appears only as an ingested
+  document format, not as an implemented data standard — no ACORD XML, AL3, NGDS,
+  IVANS download, Applied Epic or Vertafore integration is documented anywhere on
+  the public site. Kalepa is a clean example of the US insurance seam: no federal
+  regulator, no open-insurance mandate, and therefore nothing forcing a vendor in
+  the underwriting layer to expose anything publicly.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Insurance
+- United States
+- Insurtech
+- Underwriting
+- Property and Casualty
+- Commercial Insurance
+- Artificial Intelligence
+- ACORD
+- Partner Gated
+- No Public API
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.19'
+apis: []
+common:
+- type: Website
+  url: https://kalepa.com/
+- type: Blog
+  url: https://kalepa.com/blog
+- type: Newsroom
+  url: https://kalepa.com/newsroom
+- type: About
+  url: https://kalepa.com/company
+- type: StatusPage
+  url: https://status.kalepa.com/
+- type: VulnerabilityDisclosure
+  url: https://kalepa.com/security
+- type: PrivacyPolicy
+  url: https://kalepa.com/privacy-policy
+- type: SignUp
+  url: https://kalepa.com/book-a-demo
+- type: GitHubOrganization
+  url: https://github.com/Kalepa
+- type: LinkedIn
+  url: https://www.linkedin.com/company/kalepa
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

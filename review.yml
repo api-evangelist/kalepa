@@ -1,0 +1,265 @@
+aid: kalepa
+name: Kalepa
+review:
+  question: Does Kalepa expose a public, self-serve developer portal or downloadable
+    API specification for its Copilot underwriting platform?
+  answer: false
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: United States
+  gated: true
+findings:
+  summary: |
+    Kalepa publishes no public API surface. Every conventional developer-portal
+    hostname was probed and none resolves: developer.kalepa.com, developers.kalepa.com,
+    docs.kalepa.com, help.kalepa.com and support.kalepa.com all fail DNS/TLS (curl
+    exit 000). Every conventional developer path on the marketing site returns 404:
+    /developers, /api, /developer, /partners, /integrations, /docs and /platform.
+    kalepa.readme.io returns 404. kalepa.stoplight.io returns 200 but serves the
+    generic Stoplight wildcard landing page, not a Kalepa workspace.
+
+    A real production API host DOES exist. api.kalepa.com resolves and answers, and
+    the company status page at status.kalepa.com monitors exactly two components,
+    "Kalepa Web App" and "Kalepa API". But api.kalepa.com/ returns 404, and so do
+    /docs, /openapi.json, /openapi.yaml, /swagger.json, /api-docs, /v1/openapi.json,
+    /redoc, /health and /docs/openapi.json. The Copilot application at
+    copilot.kalepa.com issues a 307 to
+    https://api.kalepa.com/auth/login?frontend_redirect_url=... — a customer login
+    wall. That is the entire integration surface: an authenticated, commercially
+    negotiated customer API with no public reference documentation.
+
+    Marketing does claim API integration. The carriers solution page states verbatim
+    "Kalepa integrates via API with existing policy, underwriting, and document
+    platforms", and the submission-ingestion page states "Whether via email
+    auto-forwarding, portal integrations, or APIs, Kalepa automatically ingests,
+    classifies, and extracts submission data from multi-document submission packages
+    in minutes." No endpoint, base URL, auth scheme, scope, schema or named vendor
+    integration is published to substantiate either claim. Because nothing is
+    documented, apis[] in apis.yml is deliberately EMPTY — recording the absence is
+    the accurate outcome, not a gap in the research.
+
+    Kalepa's GitHub organization (https://github.com/Kalepa, 29 public repos) is real
+    but contains only infrastructure open source — ~25 Terraform modules plus
+    safe-init (AWS Lambda observability), kalepa-signxml and
+    marshmallow-fastoneofschema. No OpenAPI, Swagger, AsyncAPI, GraphQL SDL, .proto
+    or Postman collection is published there or anywhere else.
+  developerPortal:
+    url: ''
+    confirmed: false
+    classification: none
+    note: No developer portal of any kind exists — not a real portal, not a partner
+      login wall branded as one, not even a marketing "innovation"/developer page.
+      The nearest thing is the Copilot customer application login at
+      copilot.kalepa.com, which is the product itself, not a developer surface.
+  probes:
+  - url: https://developer.kalepa.com
+    status: 000
+    note: Does not resolve.
+  - url: https://developers.kalepa.com
+    status: 000
+    note: Does not resolve.
+  - url: https://docs.kalepa.com
+    status: 000
+    note: Does not resolve.
+  - url: https://help.kalepa.com
+    status: 000
+    note: Does not resolve.
+  - url: https://support.kalepa.com
+    status: 000
+    note: Does not resolve.
+  - url: https://app.kalepa.com
+    status: 000
+    note: Does not resolve.
+  - url: https://api.kalepa.com/
+    status: 404
+    note: Host is live and answers, but the root returns 404. Real production API
+      host for the Copilot application.
+  - url: https://api.kalepa.com/auth/login
+    status: 500
+    note: 'application/json body: {"message":"Internal Server Error"} when called
+      anonymously without the expected redirect parameters. Confirms an authenticated
+      login endpoint, not a public API.'
+  - url: https://api.kalepa.com/openapi.json
+    status: 404
+  - url: https://api.kalepa.com/openapi.yaml
+    status: 404
+  - url: https://api.kalepa.com/swagger.json
+    status: 404
+  - url: https://api.kalepa.com/v1/openapi.json
+    status: 404
+  - url: https://api.kalepa.com/api-docs
+    status: 404
+  - url: https://api.kalepa.com/docs
+    status: 404
+  - url: https://api.kalepa.com/redoc
+    status: 404
+  - url: https://api.kalepa.com/.well-known/openid-configuration
+    status: 404
+  - url: https://api.kalepa.com/.well-known/oauth-authorization-server
+    status: 404
+  - url: https://copilot.kalepa.com/
+    status: 307
+    note: Redirects to https://api.kalepa.com/auth/login?frontend_redirect_url=https%3A%2F%2Fcopilot.kalepa.com%2F
+      — customer login wall.
+  - url: https://kalepa.com/developers
+    status: 404
+  - url: https://kalepa.com/api
+    status: 404
+  - url: https://kalepa.com/developer
+    status: 404
+  - url: https://kalepa.com/partners
+    status: 404
+  - url: https://kalepa.com/integrations
+    status: 404
+  - url: https://kalepa.com/docs
+    status: 404
+  - url: https://kalepa.readme.io
+    status: 404
+  - url: https://kalepa.stoplight.io
+    status: 200
+    note: Generic Stoplight wildcard landing page, not a Kalepa API workspace. Not
+      a developer portal.
+  - url: https://status.kalepa.com/
+    status: 200
+    note: BetterStack status page. Monitors two components — "Kalepa Web App" and
+      "Kalepa API" — confirming an API exists operationally even though it is
+      undocumented publicly.
+  - url: https://kalepa.com/security
+    status: 200
+    note: Vulnerability disclosure program page. Lists "Authentication bypass" as an
+      eligible bug class. No SOC 2, SSO, SAML, MFA, encryption or API access-control
+      detail is published.
+  - url: https://kalepa.com/blog
+    status: 200
+  - url: https://kalepa.com/blog/feed.xml
+    status: 404
+    note: No RSS/Atom feed found at any conventional path (/blog/feed.xml,
+      /blog/rss.xml, /rss.xml, /feed.xml all 404).
+  - url: https://github.com/Kalepa
+    status: 200
+    note: Real GitHub organization, 29 public repos, all infrastructure/Terraform
+      open source. No API specifications of any kind.
+  acordPosture:
+    phrase: ACORD forms ingested as documents only; no ACORD XML, AL3, NGDS or IVANS
+      integration documented
+    evidence: |
+      ACORD appears on kalepa.com exclusively as a document TYPE the AI extracts
+      from, never as a data standard Kalepa implements or is certified against. The
+      submission-ingestion page states verbatim: "Kalepa handles the full spectrum of
+      submission documents, from standard ACORD forms to messy spreadsheets,
+      handwritten notes, and complex loss runs." The homepage similarly lists
+      "ACORDs and SOVs to complex loss runs and supplemental applications". Site-wide
+      searches for AL3, ACORD XML, "ACORD certified", NGDS, IVANS, agency download,
+      Applied Epic and Vertafore AMS360 returned no hits. This is the inverse of the
+      classic US carrier posture: rather than moving ACORD as a structured EDI
+      payload over IVANS agency download, Kalepa treats the ACORD form as
+      unstructured input to be parsed by an LLM — which is itself the finding.
+    certified: false
+    al3: false
+    acordXml: false
+    ngds: false
+    ivans: false
+  insuranceVerbs:
+    quote:
+      exposedAsApi: false
+      note: Copilot has a Rating module and a Quote & Bind module in the product UI
+        that generate decision-ready documents, but neither is exposed as a
+        documented public API endpoint.
+    bind:
+      exposedAsApi: false
+      note: Product-surface only (Quote & Bind module). No documented API.
+    issue:
+      exposedAsApi: false
+      note: Not a Kalepa function — policy issuance stays in the carrier's policy
+        administration system.
+    fnol:
+      exposedAsApi: false
+      note: Kalepa is an underwriting-side platform. No claims/FNOL product or API.
+    audience: partner-only
+    note: Kalepa sells to carriers, MGAs, mutuals and brokers. Every surface is
+      agent/underwriter-facing inside a licensed customer tenant. Nothing is
+      consumer-facing and nothing is self-serve.
+  authModel:
+    scheme: session login to customer tenant (undocumented)
+    evidence: copilot.kalepa.com 307-redirects to api.kalepa.com/auth/login with a
+      frontend_redirect_url parameter. No OIDC discovery document and no OAuth
+      authorization-server metadata are served at either host (both 404). No API-key,
+      OAuth2, mTLS or SAML scheme is documented publicly.
+    publiclyDocumented: false
+  webhooks:
+    documented: false
+    asyncapi: false
+    note: No event catalog, webhook reference or AsyncAPI document is published.
+      Absence is the finding — consistent with the sector.
+  postman:
+    publicCollection: false
+    workspace: ''
+  graphql:
+    surfaceFound: false
+  grpc:
+    protoPublished: false
+  openapi:
+    harvested: false
+    count: 0
+    note: No OpenAPI or Swagger document was found at any probed path, on any host,
+      or in the GitHub organization. The openapi/ directory is deliberately omitted
+      from this repo because nothing real was found to save.
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.kalepa.com
+    documented: false
+    note: Host confirmed live and monitored as "Kalepa API" on the public status
+      page, but no path, schema or reference documentation is published. Gated
+      behind customer login.
+  - protocol: Email
+    scheme: smtp
+    documented: true
+    note: Submission ingestion by email auto-forwarding is the primary documented
+      integration channel — a forms/documents idiom, not an API idiom.
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+  - protocol: GraphQL
+    documented: false
+  - protocol: gRPC
+    documented: false
+sources:
+- url: https://kalepa.com/
+  type: Website
+  note: Company overview, Copilot platform modules, ACORD named as an ingested
+    document type.
+- url: https://kalepa.com/solutions/carriers
+  type: Documentation
+  note: 'Verbatim: "Kalepa integrates via API with existing policy, underwriting,
+    and document platforms". No further technical detail on the page.'
+- url: https://kalepa.com/platforms/submission-ingestion
+  type: Documentation
+  note: 'Verbatim: "Whether via email auto-forwarding, portal integrations, or APIs,
+    Kalepa automatically ingests, classifies, and extracts submission data..." and
+    "from standard ACORD forms to messy spreadsheets, handwritten notes, and complex
+    loss runs".'
+- url: https://status.kalepa.com/
+  type: StatusPage
+  note: Monitors "Kalepa Web App" and "Kalepa API" as the only two components.
+- url: https://kalepa.com/security
+  type: VulnerabilityDisclosure
+  note: Vulnerability disclosure program only; no security architecture published.
+- url: https://github.com/Kalepa
+  type: GitHubOrganization
+  note: 29 public repos, all Terraform/infrastructure OSS; no API artifacts.
+- url: https://kalepa.com/sitemap.xml
+  type: Sitemap
+  note: Full public URL inventory — marketing, blog posts, case studies, careers.
+    Contains no developer, docs, API or reference URL of any kind.
+conclusion: |
+  Kalepa is recorded as an honest stub. It is a US insurtech operating in the
+  underwriting layer with a real, production, operationally-monitored API that is
+  entirely partner-gated and undocumented publicly. There is no developer portal, no
+  downloadable specification, no webhooks, no Postman collection, no GraphQL or gRPC
+  surface, and no published auth scheme. ACORD is consumed as a document format
+  rather than implemented as a data standard, and no IVANS or agency-management-system
+  integration is claimed. This is exactly what the US market seam predicts: with no
+  federal insurance regulator and no open-insurance mandate, nothing forces the
+  software layer between carriers and distribution to expose anything, and Kalepa
+  does not.
