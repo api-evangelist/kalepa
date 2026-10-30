@@ -1,4 +1,4 @@
-# Kalepa (kalepa)
+# Kalepa
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,76 +64,87 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kalepa is a New York–headquartered insurtech founded in 2018 by Paul Monasterio and Daniel Hillman that builds Copilot, an AI underwriting workbench sold to commercial property and casualty carriers, MGAs, mutuals and brokers in its home market of the United States. Copilot covers the commercial underwriting workflow end to end — submission ingestion out of broker email and document packages (ACORD forms, statements of value, loss runs, supplemental applications), clearance and sanctions screening, triage by bindability and profitability, risk analysis, rating, quote and bind document generation, and portfolio management.
+Kalepa is a New York–headquartered insurtech founded in 2018 by Paul Monasterio and Daniel Hillman that builds Copilot, an AI underwriting workbench sold to commercial property and casualty carriers, MGAs, mutuals and brokers in its home market of the United States. Copilot covers the commercial underwriting workflow end to end — submission ingestion out of broker email and document packages (ACORD forms, statements of value, loss runs, supplemental applications), clearance and sanctions screening, triage by bindability and profitability, risk analysis, rating, quote and bind document generation, and portfolio management. Its API posture is partner-gated and there is no public API. Kalepa publishes no developer portal — developer.kalepa.com, developers.kalepa.com and docs.kalepa.com do not resolve, and /developers, /api, /developer, /partners and /integrations on kalepa.com all return 404. A production API host does exist at api.kalepa.com and a "Kalepa API" component is monitored on the company status page, but every documentation path on it returns 404 and the application at copilot.kalepa.com redirects to api.kalepa.com/auth/login, so the only integration surface is behind a customer login negotiated in a commercial deal. The only technical posture Kalepa publishes sits on its For IT/AI Leaders page — an "API-first platform" claim, a 4-6 week production deployment, and SOC 2 Type II, the single certification named anywhere on the site. Its open source is real but unrelated to the product API: two PyPI packages (safe-init, marshmallow-fastoneofschema) and 24 Terraform modules in the public HashiCorp registry, all infrastructure tooling rather than client SDKs. ACORD appears only as an ingested document format, not as an implemented data standard — no ACORD XML, AL3, NGDS, IVANS download, Applied Epic or Vertafore integration is documented anywhere on the public site. Kalepa is a clean example of the US insurance seam: no federal regulator, no open-insurance mandate, and therefore nothing forcing a vendor in the underwriting layer to expose anything publicly.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/kalepa/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/kalepa/refs/heads/main/apis.yml)
+**Areas:** Insurance · United States · Insurtech · Underwriting · Property and Casualty · Commercial Insurance · Artificial Intelligence · ACORD
 
-## Tags
+## Kalepa on APIs.io
 
-- Insurance
-- United States
-- Insurtech
-- Underwriting
-- Property and Casualty
-- Commercial Insurance
-- Artificial Intelligence
-- ACORD
-- Partner Gated
-- No Public API
+Everything profiled for Kalepa is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kalepa/](https://apis.io/providers/kalepa/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-25
-- **Modified:** 2026-07-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Security (2)
 
-**None.** Kalepa publishes no public, self-serve API and no developer documentation, so the `apis[]` collection in `apis.yml` is deliberately empty. Recording that absence accurately is the point of this profile.
+Authentication, trust centre, and vulnerability disclosure.
 
-A real API does exist operationally — `api.kalepa.com` is live and the company's own status page at [status.kalepa.com](https://status.kalepa.com/) monitors exactly two components, "Kalepa Web App" and "Kalepa API". But it is entirely customer-gated:
+- [Kalepa Domain Security](https://apis.io/security/kalepa/kalepa-domain-security/)
+- [Kalepa Vulnerability Disclosure](https://apis.io/security/kalepa/kalepa-vulnerability-disclosure/)
 
-- `developer.kalepa.com`, `developers.kalepa.com`, `docs.kalepa.com`, `help.kalepa.com` and `support.kalepa.com` do not resolve.
-- `kalepa.com/developers`, `/api`, `/developer`, `/partners`, `/integrations` and `/docs` all return **404**.
-- Every specification path on the API host returns **404** — `/openapi.json`, `/openapi.yaml`, `/swagger.json`, `/v1/openapi.json`, `/api-docs`, `/docs`, `/redoc` — as do both `.well-known` OAuth/OIDC discovery documents.
-- The Copilot application at `copilot.kalepa.com` **307**-redirects to `api.kalepa.com/auth/login`, a customer login wall.
+## Where to find this API
 
-Marketing does claim API integration — the carriers page states verbatim that *"Kalepa integrates via API with existing policy, underwriting, and document platforms"* — but nothing is published to substantiate it: no endpoint, base URL, auth scheme, scope or schema.
-
-## ACORD Posture
-
-**ACORD forms ingested as documents only; no ACORD XML, AL3, NGDS or IVANS integration documented.**
-
-ACORD appears on the site exclusively as a document *type* Kalepa's AI extracts from — *"from standard ACORD forms to messy spreadsheets, handwritten notes, and complex loss runs"* — never as a data standard Kalepa implements or is certified against. No AL3, ACORD XML, NGDS, IVANS agency download, Applied Epic or Vertafore AMS360 reference exists anywhere on the public site. This inverts the classic US carrier posture: instead of moving ACORD as structured EDI over IVANS, Kalepa parses the ACORD form as unstructured input.
-
-## Quote / Bind / Issue / FNOL
-
-Copilot has Rating and Quote & Bind modules inside the product, but none of the four insurance verbs is exposed as a documented public API. Issue stays in the carrier's policy administration system and Kalepa ships no claims/FNOL product. Everything is underwriter- and partner-facing inside a licensed customer tenant.
-
-## Links
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://kalepa.com/)
+- [Sign up](https://kalepa.com/book-a-demo)
 - [Blog](https://kalepa.com/blog)
-- [Newsroom](https://kalepa.com/newsroom)
-- [Company](https://kalepa.com/company)
-- [Status Page](https://status.kalepa.com/)
-- [Vulnerability Disclosure](https://kalepa.com/security)
-- [Privacy Policy](https://kalepa.com/privacy-policy)
-- [Book a Demo](https://kalepa.com/book-a-demo)
-- [GitHub Organization](https://github.com/Kalepa) — 29 public repos, all Terraform/infrastructure OSS, no API artifacts
-- [LinkedIn](https://www.linkedin.com/company/kalepa)
+- [Security](https://kalepa.com/security)
+- [Compliance](https://kalepa.com/solutions/for-it-ai-leaders)
+- [Privacy policy](https://kalepa.com/privacy-policy)
+- [GitHub](https://github.com/Kalepa)
+- [Status](https://status.kalepa.com/)
 
-## Artifacts
+## API Evangelist rating
 
-Enrichment round 2026-07-25 — everything below is searched or probed from Kalepa's own public surface. No spec-derived artifacts exist because there is no spec.
+**Kin Score 17.3** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-- [conformance/kalepa-conformance.yml](conformance/kalepa-conformance.yml) — **SOC 2 Type II** is published (on the For IT/AI Leaders page, not the security page), GDPR/UK GDPR/Swiss legal bases in the privacy policy, and per-standard conformance with evidence. No ISO 27001, PCI DSS, HIPAA or FedRAMP claim exists.
-- [lifecycle/kalepa-lifecycle.yml](lifecycle/kalepa-lifecycle.yml) — Better Stack status page, both components at 99.993% uptime, a weekly Sunday 6-hour maintenance window ("usually does not last longer than 1 hour"), and eight dated incidents with root-cause notes. No versioning policy, no deprecation policy, no SLA.
-- [packages/kalepa-packages.yml](packages/kalepa-packages.yml) — real first-party open source that is **not** an SDK: `safe-init` and `marshmallow-fastoneofschema` on PyPI, `kalepa-signxml` on GitHub, and 24 Terraform modules under the [Kalepa registry namespace](https://registry.terraform.io/namespaces/Kalepa) led by `shell-resource/external` at ~128k downloads.
-- [security/kalepa-domain-security.yml](security/kalepa-domain-security.yml) — TLS 1.3 and HSTS on all five hosts (`api.kalepa.com` is includeSubDomains + preload), DNSSEC on three of four domains, no CAA anywhere, and no SPF/DMARC on `kalepainsurance.com` or `kalepa.io` even though both are in disclosure scope.
-- [security/kalepa-vulnerability-disclosure.yml](security/kalepa-vulnerability-disclosure.yml) — the responsible-disclosure program structured: `security@kalepa.com`, four in-scope domains, six eligible and six ineligible bug classes, safe-harbour language, no paid bounty, no security.txt.
-- [well-known/kalepa-well-known.yml](well-known/kalepa-well-known.yml) — every `/.well-known/` probe on both hosts, all **404**. Recorded as evidence of absence; no `WellKnown` pointer is wired because there is no discovery surface.
-- [llms/kalepa-llms.txt](llms/kalepa-llms.txt) — generated (Kalepa publishes no `llms.txt`), telling an agent what exists, what does not, and not to attempt calls against `api.kalepa.com`.
+| Facet | Score |
+|---|---|
+| Discoverability | 49.1 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 2.4 |
+| Access clarity | 31.6 |
 
-## Review
+**Agent readiness 0.0** — human-only
 
-See [review.yml](review.yml) for the full API Evangelist reviewer finding, including every probed URL with its HTTP status.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.3** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kalepa/](https://apis.io/providers/kalepa/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kalepa: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kalepa/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
